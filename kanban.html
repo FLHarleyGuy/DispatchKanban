@@ -1873,4 +1873,20 @@
     });
 
     window.addEventListener('appinstalled', () => {
-      deferredInstallPrompt 
+      deferredInstallPrompt = null;
+      document.getElementById('installBtn').setAttribute('hidden', '');
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      buildAgentUi();
+      wireExpandedColumnHeaders();
+      restoreExpandedColumn();
+      wireControls();
+      startAutoRefresh();
+      if (await initFileSystem()) {
+        loadBoard();
+      }
+    });
+  </script>
+</body>
+</html>
